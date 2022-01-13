@@ -9,5 +9,16 @@ public class Lexer {
 	
 	public Lexer(String input) { 
 		this.input = input;
+		readChar();
+	}
+	
+	public void readChar() { 
+		if (readPosition >= input.length()) { 
+			readPosition = 0;
+		} else { 
+			ch = input.charAt(readPosition);
+		}
+		position = readPosition;
+		readPosition += 1;
 	}
 }
