@@ -1,5 +1,7 @@
 package lexer;
 
+import token.Token;
+
 public class Lexer {
 	
 	public String input;
@@ -20,5 +22,26 @@ public class Lexer {
 		}
 		position = readPosition;
 		readPosition += 1;
+	}
+	
+	public Token nextToken() { 
+		Token tok;
+		
+		switch(ch) { 
+		case '(':
+			tok = new Token(Token.LPAREN, Character.toString(ch)); 
+			break;
+		case ')':
+			tok = new Token(Token.RPAREN, Character.toString(ch)); 
+			break;
+		case '+':
+			tok = new Token(Token.PLUS, Character.toString(ch)); 
+			break;
+		default:
+			tok = new Token(Token.EOF, "");
+		}
+		
+		readChar();
+		return tok;
 	}
 }
