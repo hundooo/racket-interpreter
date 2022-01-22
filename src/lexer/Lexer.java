@@ -55,7 +55,10 @@ public class Lexer {
 			break;
 		default:
 			if (isLetter(ch)) { 
-				tok = new Token("", readIdentifier());
+				String literal = readIdentifier();
+				String type = Token.lookupIdent(literal);
+				tok = new Token(type, literal);
+				return tok;
 			} else { 
 				tok = new Token(Token.ILLEGAL, Character.toString(ch));
 			}
