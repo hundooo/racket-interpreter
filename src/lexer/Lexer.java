@@ -24,6 +24,19 @@ public class Lexer {
 		readPosition += 1;
 	}
 	
+	public boolean isLetter(char ch) {
+		return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '-';
+	}
+	
+	public String readIdentifier() { 
+		int position = this.position;
+		
+		while (isLetter(ch)) {
+			readChar();
+		}
+		return input.substring(position, this.position);
+	}
+	
 	public Token nextToken() { 
 		Token tok;
 		
@@ -37,8 +50,15 @@ public class Lexer {
 		case '+':
 			tok = new Token(Token.PLUS, Character.toString(ch)); 
 			break;
-		default:
+		case 0:
 			tok = new Token(Token.EOF, "");
+			break;
+		default:
+			if (isLetter(ch)) { 
+				tok = new Token("", readIdentifier());
+			} else { 
+				tok = new Token(Token.ILLEGAL, Character.toString(ch));
+			}
 		}
 		
 		readChar();
