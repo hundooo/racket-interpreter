@@ -28,6 +28,10 @@ public class Lexer {
 		return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '-';
 	}
 	
+	public boolean isDigit(char ch) { 
+		return '0' <= ch && ch <= '9';
+	}
+	
 	public String readIdentifier() { 
 		int position = this.position;
 		
@@ -37,8 +41,17 @@ public class Lexer {
 		return input.substring(position, this.position);
 	}
 	
+	public String readNumber() { 
+		int position = this.position;
+		
+		while (isDigit(ch)) {
+			readChar();
+		}
+		return input.substring(position, this.position);
+	}
+	
 	public void eatWhitespace() {
-		while(ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r') {
+		while (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r') {
 			readChar();
 		}
 	}
@@ -66,6 +79,9 @@ public class Lexer {
 				String literal = readIdentifier();
 				String type = Token.lookupIdent(literal);
 				tok = new Token(type, literal);
+				return tok;
+			} else if (isDigit(ch)) {
+				tok = new Token(Token.INT, readNumber());
 				return tok;
 			} else { 
 				tok = new Token(Token.ILLEGAL, Character.toString(ch));
