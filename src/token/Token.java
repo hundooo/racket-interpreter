@@ -32,5 +32,10 @@ public class Token {
 		this.literal = literal;
 	}
 	
-	
+	public String lookupIdent(String ident) {
+		if (KEYWORDS.get(ident) != null) {
+			return KEYWORDS.get(ident);
+		}
+		return IDENT;
+	}
 }
