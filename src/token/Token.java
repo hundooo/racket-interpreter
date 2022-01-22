@@ -19,7 +19,7 @@ public class Token {
 	// Keywords
 	public static final String LAMBDA = "LAMBDA";
 	public static final String DEFINE = "DEFINE";
-	public final Map<String, String> KEYWORDS = Map.ofEntries(
+	public static final Map<String, String> KEYWORDS = Map.ofEntries(
 			Map.entry("lambda", LAMBDA), 
 			Map.entry("define", DEFINE));
 	
@@ -32,7 +32,7 @@ public class Token {
 		this.literal = literal;
 	}
 	
-	public String lookupIdent(String ident) {
+	public static String lookupIdent(String ident) {
 		if (KEYWORDS.get(ident) != null) {
 			return KEYWORDS.get(ident);
 		}
