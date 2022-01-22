@@ -37,8 +37,16 @@ public class Lexer {
 		return input.substring(position, this.position);
 	}
 	
+	public void eatWhitespace() {
+		while(ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r') {
+			readChar();
+		}
+	}
+	
 	public Token nextToken() { 
 		Token tok;
+		
+		eatWhitespace();
 		
 		switch(ch) { 
 		case '(':
