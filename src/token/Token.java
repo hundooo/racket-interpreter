@@ -1,5 +1,7 @@
 package token;
 
+import java.util.Map;
+
 public class Token {
 	public static final String ILLEGAL = "ILLEGAL";
 	public static final String EOF = "EOF";
@@ -17,6 +19,10 @@ public class Token {
 	// Keywords
 	public static final String LAMBDA = "LAMBDA";
 	public static final String DEFINE = "DEFINE";
+	public final Map<String, String> KEYWORDS = Map.ofEntries(
+			Map.entry("lambda", LAMBDA), 
+			Map.entry("define", DEFINE));
+	
 	
 	public String type;
 	public String literal;
