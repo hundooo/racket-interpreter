@@ -12,7 +12,11 @@ public class Token {
 	
 	// Operators 
 	public static final String PLUS = "+";
-	
+	public static final String MINUS = "-";
+	public static final String ASTERISK = "*";
+	public static final String SLASH = "/";
+	public static final String LT = "<";
+	public static final String GT = ">";
 	public static final String LPAREN = "(";
 	public static final String RPAREN = ")";
 	
