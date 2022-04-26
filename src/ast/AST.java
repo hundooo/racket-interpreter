@@ -10,10 +10,6 @@ interface Node {
 	public String tokenLiteral();
 }
 
-interface Statement extends Node {
-	public void statementNode();
-}
-
 interface Expression extends Node {
 	public void expressionNode();
 }
