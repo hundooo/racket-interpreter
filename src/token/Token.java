@@ -11,12 +11,15 @@ public class Token {
 	public static final String INT = "INT";
 	
 	// Operators 
+	public static final String EQUAL = "=";
 	public static final String PLUS = "+";
 	public static final String MINUS = "-";
 	public static final String ASTERISK = "*";
 	public static final String SLASH = "/";
 	public static final String LT = "<";
 	public static final String GT = ">";
+	public static final String LTE = "<=";
+	public static final String GTE = ">=";
 	public static final String LPAREN = "(";
 	public static final String RPAREN = ")";
 	public static final String LSBRACK = "[";
