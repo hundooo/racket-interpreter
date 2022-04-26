@@ -68,6 +68,12 @@ public class Lexer {
 		case ')':
 			tok = new Token(Token.RPAREN, Character.toString(ch)); 
 			break;
+		case '[':
+			tok = new Token(Token.LSBRACK, Character.toString(ch));
+			break;
+		case ']':
+			tok = new Token(Token.RSBRACK, Character.toString(ch));
+			break;
 		case '+':
 			tok = new Token(Token.PLUS, Character.toString(ch)); 
 			break;
