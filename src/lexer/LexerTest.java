@@ -4,8 +4,8 @@ import token.Token;
 
 public class LexerTest {
 	public static void main(String[] args) { 
-		String input = "(define five 5) (define ten 10) (define add (lambda (x y) (+ x y))) (define result (add five ten)) -/*5 5 < 10 > 5";
-		Token[] tests = new Token[44];
+		String input = "(define five 5) (define ten 10) (define add (lambda (x y) (+ x y))) (define result (add five ten)) -/*5 5 < 10 > 5 (cond [(< 5 10) true] [else false])";
+		Token[] tests = new Token[59];
 		Lexer l = new Lexer(input);
 		
 		tests[0] = new Token(Token.LPAREN, "(");
@@ -55,6 +55,21 @@ public class LexerTest {
 		tests[41] = new Token(Token.INT, "10");
 		tests[42] = new Token(Token.GT, ">");
 		tests[43] = new Token(Token.INT, "5");
+		tests[44] = new Token(Token.LPAREN, "(");
+		tests[45] = new Token(Token.COND, "cond");
+		tests[46] = new Token(Token.LSBRACK, "[");
+		tests[47] = new Token(Token.LPAREN, "(");
+		tests[48] = new Token(Token.LT, "<");
+		tests[49] = new Token(Token.INT, "5");
+		tests[50] = new Token(Token.INT, "10");
+		tests[51] = new Token(Token.RPAREN, ")");
+		tests[52] = new Token(Token.TRUE, "true");
+		tests[53] = new Token(Token.RSBRACK, "]");
+		tests[54] = new Token(Token.LSBRACK, "[");
+		tests[55] = new Token(Token.ELSE, "else");
+		tests[56] = new Token(Token.FALSE, "false");
+		tests[57] = new Token(Token.RSBRACK, "]");
+		tests[58] = new Token(Token.RPAREN, ")");
 		
 		boolean flag = true;
 		for (int i = 0; i < tests.length; i++) { 
