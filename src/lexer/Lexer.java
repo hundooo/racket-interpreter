@@ -16,7 +16,7 @@ public class Lexer {
 	
 	public void readChar() { 
 		if (readPosition >= input.length()) { 
-			readPosition = 0;
+			ch = 0;
 		} else { 
 			ch = input.charAt(readPosition);
 		}
@@ -61,7 +61,7 @@ public class Lexer {
 		
 		eatWhitespace();
 		
-		switch(ch) { 
+		switch(ch) {
 		case '(':
 			tok = new Token(Token.LPAREN, Character.toString(ch)); 
 			break;
@@ -70,6 +70,21 @@ public class Lexer {
 			break;
 		case '+':
 			tok = new Token(Token.PLUS, Character.toString(ch)); 
+			break;
+		case '-':
+			tok = new Token(Token.MINUS, Character.toString(ch));
+			break;
+		case '/':
+			tok = new Token(Token.SLASH, Character.toString(ch));
+			break;
+		case '*':
+			tok = new Token(Token.ASTERISK, Character.toString(ch));
+			break;
+		case '<':
+			tok = new Token(Token.LT, Character.toString(ch));
+			break;
+		case '>':
+			tok = new Token(Token.GT, Character.toString(ch));
 			break;
 		case 0:
 			tok = new Token(Token.EOF, "");
