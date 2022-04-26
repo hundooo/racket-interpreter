@@ -10,16 +10,21 @@ public class REPL {
 	
 	public void start() {
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.print(PROMPT);
-		
-		String line = sc.nextLine();
-		Lexer l = new Lexer(line);
-		
-		Token tok = l.nextToken();
-		while (tok.type != Token.EOF) {
-			System.out.println(tok);
-			tok = l.nextToken();
+		while (true) {
+			System.out.print(PROMPT);
+			
+			if (!sc.hasNextLine()) {
+				break;
+			}
+			
+			String line = sc.nextLine();
+			Lexer l = new Lexer(line);
+			
+			Token tok = l.nextToken();
+			while (tok.type != Token.EOF) {
+				System.out.println(tok);
+				tok = l.nextToken();
+			}
 		}
 		sc.close();
 	}
