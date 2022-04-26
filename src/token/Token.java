@@ -19,13 +19,23 @@ public class Token {
 	public static final String GT = ">";
 	public static final String LPAREN = "(";
 	public static final String RPAREN = ")";
+	public static final String LSBRACK = "[";
+	public static final String RSBRACK = "]";
 	
 	// Keywords
+	public static final String TRUE = "TRUE";
+	public static final String FALSE = "FALSE";
+	public static final String ELSE = "ELSE";
+	public static final String COND = "COND";
 	public static final String LAMBDA = "LAMBDA";
 	public static final String DEFINE = "DEFINE";
 	public static final Map<String, String> KEYWORDS = Map.ofEntries(
 			Map.entry("lambda", LAMBDA), 
-			Map.entry("define", DEFINE));
+			Map.entry("define", DEFINE),
+			Map.entry("cond", COND),
+			Map.entry("true", TRUE),
+			Map.entry("false", FALSE),
+			Map.entry("else", ELSE));
 	
 	
 	public String type;
