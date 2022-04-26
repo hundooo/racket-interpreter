@@ -18,20 +18,6 @@ interface Expression extends Node {
 	public void expressionNode();
 }
 
-class Program implements Statement {
-	Statement[] statements;
-
-	public String tokenLiteral() {
-		if (statements.length > 0) {
-			return statements[0].tokenLiteral();
-		} else {
-			return "";
-		}
-	}
-
-	public void statementNode() {}
-}
-
 class DefineStatement implements Statement {
 	Token token;
 	Identifier name;
