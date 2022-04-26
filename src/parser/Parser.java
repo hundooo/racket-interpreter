@@ -1,6 +1,6 @@
 package parser;
 
-import ast.AST;
+import ast.Program;
 import lexer.Lexer;
 import token.Token;
 
@@ -20,7 +20,7 @@ public class Parser {
 		peekToken = l.nextToken();
 	}
 	
-//	public  ParseProgram() {
-//		return null;
-//	}
+	public Program ParseProgram() {
+		return null;
+	}
 }
