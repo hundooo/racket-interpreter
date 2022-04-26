@@ -4,8 +4,8 @@ import token.Token;
 
 public class LexerTest {
 	public static void main(String[] args) { 
-		String input = "(define five 5) (define ten 10) (define add (lambda (x y) (+ x y))) (define result (add five ten)) -/*5 5 < 10 > 5 (cond [(< 5 10) true] [else false])";
-		Token[] tests = new Token[59];
+		String input = "(define five 5) (define ten 10) (define add (lambda (x y) (+ x y))) (define result (add five ten)) -/*5 5 < 10 > 5 (cond [(< 5 10) true] [else false]) 10 <= 10 5 >= 5 =";
+		Token[] tests = new Token[66];
 		Lexer l = new Lexer(input);
 		
 		tests[0] = new Token(Token.LPAREN, "(");
@@ -70,6 +70,13 @@ public class LexerTest {
 		tests[56] = new Token(Token.FALSE, "false");
 		tests[57] = new Token(Token.RSBRACK, "]");
 		tests[58] = new Token(Token.RPAREN, ")");
+		tests[59] = new Token(Token.INT, "10");
+		tests[60] = new Token(Token.LTE, "<=");
+		tests[61] = new Token(Token.INT, "10");
+		tests[62] = new Token(Token.INT, "5");
+		tests[63] = new Token(Token.GTE, ">=");
+		tests[64] = new Token(Token.INT, "5");
+		tests[65] = new Token(Token.EQUAL, "=");
 		
 		boolean flag = true;
 		for (int i = 0; i < tests.length; i++) { 

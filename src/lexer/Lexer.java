@@ -24,6 +24,14 @@ public class Lexer {
 		readPosition += 1;
 	}
 	
+	public char peekChar() {
+		if (readPosition >= input.length()) {
+			return 0;
+		} else {
+			return input.charAt(readPosition);
+		}
+	}
+	
 	public boolean isLetter(char ch) {
 		return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '-';
 	}
@@ -74,6 +82,9 @@ public class Lexer {
 		case ']':
 			tok = new Token(Token.RSBRACK, Character.toString(ch));
 			break;
+		case '=':
+			tok = new Token(Token.EQUAL, Character.toString(ch));
+			break;
 		case '+':
 			tok = new Token(Token.PLUS, Character.toString(ch)); 
 			break;
@@ -87,10 +98,22 @@ public class Lexer {
 			tok = new Token(Token.ASTERISK, Character.toString(ch));
 			break;
 		case '<':
-			tok = new Token(Token.LT, Character.toString(ch));
+			if (peekChar() == '=') {
+				char ch = this.ch;
+				readChar();
+				tok = new Token(Token.LTE, Character.toString(ch) + Character.toString(this.ch));
+			} else {
+				tok = new Token(Token.LT, Character.toString(ch));
+			}
 			break;
 		case '>':
-			tok = new Token(Token.GT, Character.toString(ch));
+			if (peekChar() == '=') {
+				char ch = this.ch;
+				readChar();
+				tok = new Token(Token.GTE, Character.toString(ch) + Character.toString(this.ch));
+			} else {
+				tok = new Token(Token.GT, Character.toString(ch));
+			}
 			break;
 		case 0:
 			tok = new Token(Token.EOF, "");
