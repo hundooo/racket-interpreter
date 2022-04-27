@@ -26,7 +26,7 @@ public class Parser {
 		peekToken = l.nextToken();
 	}
 	
-	public Program ParseProgram() {
+	public Program parseProgram() {
 		Program program = new Program();
 		program.statements = new ArrayList<Statement>();
 		
@@ -59,8 +59,17 @@ public class Parser {
 		
 		stmt.name = new Identifier(curToken, curToken.literal);
 		
+		while (!curTokenIs(Token.RPAREN)) {
+			nextToken();
+		}
+		
 		return stmt;
 	}
+	
+	public boolean curTokenIs(String t) {
+		return curToken.type == t;
+	}
+	
 	
 	public boolean peekTokenIs(String t) {
 		return peekToken.type == t;
@@ -73,10 +82,6 @@ public class Parser {
 		} else {
 			return false;
 		}
-	}
-	
-	public ArrayList<String> errors() {
-		return errors;
 	}
 	
 	public void peekError(String t) { 

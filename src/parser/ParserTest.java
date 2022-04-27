@@ -8,16 +8,18 @@ import lexer.Lexer;
 public class ParserTest {
 	
 	public static void main(String[] args) { 
-		testLetStatements();
+		testDefineStatements();
 	}
 	
-	public static void testLetStatements() {
+	public static void testDefineStatements() {
 		String input = "(define x 5) (define y 10) (define foobar 838383)";
 		
 		Lexer l = new Lexer(input);
 		Parser p = new Parser(l);
 		
-		Program program = p.ParseProgram();
+		Program program = p.parseProgram();
+		checkParserErrors(p);
+		
 		if (program == null) {
 			System.out.println("FAIL: ParseProgram() returned null");
 		}
@@ -32,13 +34,13 @@ public class ParserTest {
 		
 		for (int i = 0; i < tests.length; i++) {
 			Statement s = program.statements.get(i);
-			if (!testLetStatement(s, tests[i])) {
+			if (!testDefineStatement(s, tests[i])) {
 				return;
 			}
 		}
 	}
 	
-	public static boolean testLetStatement(Statement s, String name) {
+	public static boolean testDefineStatement(Statement s, String name) {
 		if (!s.tokenLiteral().equals("define")) {
 			System.out.println("s.tokenLiteral not 'define'. got=" + s.tokenLiteral());
 			return false;
@@ -62,5 +64,16 @@ public class ParserTest {
 		}
 		
 		return true;
+	}
+	
+	public static void checkParserErrors(Parser p) {
+		if (p.errors.size() == 0) {
+			return;
+		}
+		
+		System.out.println("ERROR: parser has " + p.errors.size() + " errors");
+		for (int i = 0; i < p.errors.size(); i++) {
+			System.out.println("parser error: " + p.errors.get(i));
+		}
 	}
 }
