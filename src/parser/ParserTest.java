@@ -21,8 +21,8 @@ public class ParserTest {
 		if (program == null) {
 			System.out.println("FAIL: ParseProgram() returned null");
 		}
-		if (program.statements.length != 3) {
-			System.out.println("FAIL: program.statements does not contain 3 statements. got=" + program.statements.length);
+		if (program.statements.size() != 3) {
+			System.out.println("FAIL: program.statements does not contain 3 statements. got=" + program.statements.size());
 		}
 		
 		String[] tests = new String[3];
@@ -31,7 +31,7 @@ public class ParserTest {
 		tests[2] = "foobar";
 		
 		for (int i = 0; i < tests.length; i++) {
-			Statement s = program.statements[i];
+			Statement s = program.statements.get(i);
 			if (!testLetStatement(s, tests[i])) {
 				return;
 			}
@@ -39,7 +39,7 @@ public class ParserTest {
 	}
 	
 	public static boolean testLetStatement(Statement s, String name) {
-		if (s.tokenLiteral() != "define") {
+		if (!s.tokenLiteral().equals("define")) {
 			System.out.println("s.tokenLiteral not 'define'. got=" + s.tokenLiteral());
 			return false;
 		}
@@ -51,12 +51,12 @@ public class ParserTest {
 		
 		DefineStatement defStmt = (DefineStatement) s;
 		
-		if (defStmt.name.value != name) {
+		if (!defStmt.name.value.equals(name)) {
 			System.out.println("ERROR: defStmt.name.value not " + name + ". got=" + defStmt.name.value);
 			return false;
 		}
 		
-		if (defStmt.name.tokenLiteral() != name) {
+		if (!defStmt.name.tokenLiteral().equals(name)) {
 			System.out.println("ERROR: s.name not " + name + ". got=" + defStmt.name);
 			return false;
 		}
