@@ -1,7 +1,6 @@
 package parser;
 
 import java.util.ArrayList;
-
 import ast.DefineStatement;
 import ast.Identifier;
 import ast.Program;
@@ -13,9 +12,11 @@ public class Parser {
 	Lexer l;
 	Token curToken;
 	Token peekToken;
+	ArrayList<String> errors;
 	
 	public Parser(Lexer l) {
 		this.l = l;
+		errors = new ArrayList<String>();
 		nextToken();
 		nextToken();
 	}
@@ -72,5 +73,14 @@ public class Parser {
 		} else {
 			return false;
 		}
+	}
+	
+	public ArrayList<String> errors() {
+		return errors;
+	}
+	
+	public void peekError(String t) { 
+		String msg = "expected next token to be " + t + ", got " + peekToken.type + " instead";
+		errors.add(msg);
 	}
 }
