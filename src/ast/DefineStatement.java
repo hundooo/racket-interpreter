@@ -7,6 +7,10 @@ public class DefineStatement implements Statement {
 	public Identifier name;
 	public Expression value;
 
+	public DefineStatement(Token token) {
+		this.token = token;
+	}
+	
 	public String tokenLiteral() {
 		return token.literal;
 	}
